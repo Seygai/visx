@@ -11,7 +11,7 @@ jobs:
       - uses: actions/checkout@v2 # checkout visx + this commit
       - uses: actions/setup-node@v2
         with:
-          node-version: '12'
+          node-version: "12"
 
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
@@ -43,14 +43,6 @@ jobs:
 
       - name: ❤️ Run lint
         run: yarn lint
-
-      - name: 🦛 Run happo
-        run: yarn run happo-ci-github-actions
-        working-directory: './packages/visx-demo/'
-        env:
-          HAPPO_API_KEY: ${{ secrets.HAPPO_API_KEY }}
-          HAPPO_API_SECRET: ${{ secrets.HAPPO_API_SECRET }}
-          HAPPO_COMMAND: '../../node_modules/happo.io/build/cli.js'
 
       # @TODO
       # this fails on forks, we need to update workflow event type to `pull_request_target`
